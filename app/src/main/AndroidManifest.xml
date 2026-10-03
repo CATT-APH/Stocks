@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Twelve Data API calls (quote + time_series). -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+    android:screenOrientation="landscape" is needed for Monarch Development.
+    It's an <activity>-level attribute, so it has to be set on EACH activity
+    individually: Android silently ignores it if placed on <application>,
+    which this file used to do, so HomeActivity was consequently not
+    actually locked to landscape; fixed by adding it directly to each
+    activity below.
+    android:name=".StocksApplication" is crucial for making commands work.
+    If that is not added the commands will not work.
+    -->
+    <application
+        android:name=".StocksApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Stocks"
+        tools:targetApi="34">
+
+        <activity
+            android:name=".activities.HomeActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.ChartActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".activities.DetailsActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+
+        <provider
+            android:name="XmlResource"
+            android:authorities="org.aph.stocks.XmlResource"
+            android:grantUriPermissions="true"
+            android:exported="true">
+        </provider>
+    </application>
+</manifest>

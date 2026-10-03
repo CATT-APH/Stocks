@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# HumanWare Maven deploy token -- must never be committed
+keystore.properties
+
+# Twelve Data API key -- must never be committed
+apikeys.properties

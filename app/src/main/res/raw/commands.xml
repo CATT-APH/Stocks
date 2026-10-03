@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Maps physical Monarch controls to Android keycodes so they reach
+onKeyDown -- nothing is auto-forwarded on this hardware; every keycode
+needs its own entry here or it never arrives (hard-won lesson from the
+PlantWave project, confirmed via adb logcat).
+
+StocksApplication hands this file to KeySoft on launch.
+
+Panning Down opens Details (Open/Previous Close/Volume/52-week range),
+Panning Up returns -- global context (viewIdResourceName="*"), delivered
+keycodes 420 (Up) / 421 (Down), not the `param` values below. Reliability
+history: worked in two isolated tests, failed on a clean retry and after
+a full reboot, user reports it working directly on-device even when my
+own adb-based checks didn't catch it -- see monarch-sdk-known-issues
+memory for the full history. Zoom In/Out remain permanently unreachable
+regardless of context (confirmed repeatedly) and are not mapped here.
+-->
+<keymapping>
+    <application package="org.aph.stocks">
+        <context viewIdResourceName="*">
+            <action name="substitute">
+                <command commandId="panning_up" param="303" string="context_menu_panning_up">
+                    <key>PanningUp</key>
+                </command>
+                <command commandId="panning_down" param="304" string="context_menu_panning_down">
+                    <key>PanningDown</key>
+                </command>
+            </action>
+        </context>
+    </application>
+</keymapping>

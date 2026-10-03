@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stocks</string>
+    <string name="details_title">Details</string>
+
+    <string name="context_menu_panning_up">Return from details</string>
+    <string name="context_menu_panning_down">Open details</string>
+</resources>
