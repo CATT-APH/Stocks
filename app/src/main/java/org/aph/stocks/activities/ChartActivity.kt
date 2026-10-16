@@ -29,13 +29,9 @@ import org.aph.stocks.monarch_utils.Position
  *
  * Range cycles Week <-> Month <-> Year <-> All (wrapping both directions)
  * via D-pad Up (forward) / D-pad Down (backward) -- D-pad Up
- * hardware-confirmed twice via live adb key testing. Zoom In/Out were
- * tried first but are permanently claimed system-wide by the device's own
- * screen reader for braille line spacing (confirmed in the vendor's
- * Command Summary doc, and empirically: an empty app-level key log while
- * pressing Zoom here, versus the same press working once the screen
- * reader was toggled off entirely). No commands.xml mapping can override
- * this, so Zoom was dropped as a trigger for anything app-level.
+ * hardware-confirmed twice via live adb key testing. Zoom In/Out are
+ * reserved by the device's screen reader and never reach the app, so they
+ * are not used.
  *
  * Back navigation is the physical Back button / Android's own back
  * handling (confirmed registering automatically for this screen via
@@ -177,10 +173,8 @@ class ChartActivity : AppCompatActivity() {
             KeyEvent.KEYCODE_DPAD_DOWN -> debounced { setRange(adjacentRange(-1)) }
             // Panning Down opens Details (Open/Previous Close/Volume/52-week
             // range -- the fields dropped from this screen's own header).
-            // Confirmed via isolated one-key-at-a-time live testing to
-            // require a GLOBAL commands.xml context; Zoom In/Out were tried
-            // the same way and still never reach the app -- permanently
-            // claimed system-wide for braille line spacing, unlike Panning.
+            // Requires a global commands.xml context. Zoom In/Out never reach
+            // the app.
             KEYCODE_PANNING_DOWN -> debounced { openDetails() }
             else -> return super.onKeyDown(keyCode, event)
         }

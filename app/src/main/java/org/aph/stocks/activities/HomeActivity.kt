@@ -112,12 +112,8 @@ class HomeActivity : AbstractMenuActivity() {
     }
 
     /**
-     * Uses the SDK's own SearchDialog (a real android.app.Dialog with a
-     * plain EditText, confirmed via javap against the resolved SDK jar) --
-     * not a hand-built text-entry screen. The known SDK limitation is
-     * specifically Jetpack Compose text inputs, not View-based EditText,
-     * and this dialog is exactly what HumanWare ships for this purpose
-     * elsewhere in the SDK.
+     * Uses the SDK's own SearchDialog rather than a hand-built text-entry
+     * screen.
      *
      * Whatever's typed is treated directly as the ticker symbol (uppercased,
      * no separate company-name lookup) -- ChartActivity already handles an

@@ -24,13 +24,9 @@ import com.humanware.keysoftsdk.R as sdkR
  * (no new network call -- Chart already has this data in memory by the
  * time a user could reach this screen).
  *
- * Reaches here via Panning Down (keyCode 421) from Chart -- requires a
- * GLOBAL commands.xml context (viewIdResourceName="*"); the old
- * SelfBraillingWidget-scoped context produced nothing. This has proven
- * genuinely unreliable in testing (worked, then failed on a clean retry
- * and after a full reboot, then worked again after a fresh app restart --
- * see monarch-sdk-known-issues memory for the full history), so it's a
- * best-effort entry point, not the guaranteed one.
+ * Reaches here via Panning Down (keyCode 421) from Chart, which requires a
+ * global commands.xml context (viewIdResourceName="*"). This is not always
+ * reliable on the device, so it is a best-effort entry point.
  *
  * Returning uses the real Back button instead of Panning Up -- Panning Up
  * produced zero app-level events on this specific screen even right after
